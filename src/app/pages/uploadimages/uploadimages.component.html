@@ -1,0 +1,48 @@
+<input
+  type="file"
+  id="myFile"
+  name="filename"
+  [multiple]="multiple =='single' ? false : true"
+  accept="image/*"
+  class="uploadfilebtn"
+  (change)="selectFiles($event)"
+  #fileUpload
+/>
+<ng-container *ngIf="multiple !='single' else single">
+    <button class="btn btn-primary" type="button" (click)="fileUpload.click(); uploadFiles()">Upload</button>
+    <div>
+      <ng-container *ngIf="selectedFileNames.length">
+       <div class="fileBadge" *ngFor="let fileNmae of selectedFileNames; let i= index">{{fileNmae}}
+         <span (click)="removefile(i)" class="rightFloat pointer">x</span>
+       </div>
+      </ng-container>
+    </div>
+</ng-container>
+
+<!--multiple-->
+
+
+<ng-template #single>
+  <ng-containter *ngIf="previews.length; else defaultImg">
+    <img
+      *ngFor="let preview of previews"
+      [src]="preview || 'assets/img/theme/team-4-800x800.jpg'"
+      class="preview"
+    />
+  </ng-containter>
+  <ng-template #defaultImg>
+    <img src="assets/img/theme/team-4-800x800.jpg" class="" />
+  </ng-template>
+  
+ 
+  <span (click)="fileUpload.click()" class="cameraBtn">
+    <em class="fas fa-camera"></em>
+  </span>
+  <button
+  class="btn btn-primary"
+  [disabled]="!selectedFiles"
+  (click)="uploadFiles()"
+  >
+  Upload
+  </button>
+</ng-template>

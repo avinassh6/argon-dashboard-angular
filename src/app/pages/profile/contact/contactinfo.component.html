@@ -1,0 +1,362 @@
+<div class="card-header bg-white border-0">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <h3 class="mb-0">Contact Information</h3>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="pl-lg-4">
+ 
+  
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Mobile number*</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.MobileNumbe"  placeholder="Fathername"  name="MobileNumbe" [required]="true"  #MobileNumbe="ngModel">
+          <span class="errorWrapper" *ngIf="(MobileNumbe?.errors && MobileNumbe?.touched || f.submitted)">
+            <span *ngIf="MobileNumbe?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <input type="checkbox"  [(ngModel)]="contact.otp"  [required]="true"  #otp="ngModel"
+          name="otp"> OTP
+          <span class="errorWrapper" *ngIf="(otp?.errors && otp?.touched || f.submitted)">
+           <span *ngIf="otp?.errors?.required" class="text-danger">Required</span>
+         </span>
+      </div>
+      </div>
+     
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Whatsapp mobile Number</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.Whatsapp"  placeholder="Whatsapp mobile Number"  name="Whatsapp" [required]="true"  #Whatsapp="ngModel">
+          <span class="errorWrapper" *ngIf="(Whatsapp?.errors && Whatsapp?.touched || f.submitted)">
+            <span *ngIf="Whatsapp?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Other number</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.Othernumber"  placeholder="Other Number"  name="Othernumber" [required]="false"  #Othernumber="ngModel">
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Email id</label>
+          <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"
+                [(ngModel)]="contact.Email"   name="Email" [required]="true"  #Email="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <span class="errorWrapper" *ngIf="(Email?.errors && Email?.touched || f.submitted)">
+            <span *ngIf="Email?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <input type="checkbox"  [(ngModel)]="contact.emailotp"  [required]="true"  #emailotp="ngModel"
+          name="emailotp">OTP
+          <span class="errorWrapper" *ngIf="(emailotp?.errors && emailotp?.touched || f.submitted)">
+           <span *ngIf="emailotp?.errors?.required" class="text-danger">Required</span>
+         </span>
+      </div>
+      </div>
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Secondary Email id</label>
+          <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"
+                [(ngModel)]="contact.SecondaryEmail"   name="SecondaryEmail" [required]="true"  #SecondaryEmail="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <span class="errorWrapper" *ngIf="(SecondaryEmail?.errors && SecondaryEmail?.touched || f.submitted)">
+            <span *ngIf="SecondaryEmail?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Office Email id</label>
+          <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"
+                [(ngModel)]="contact.OfficeEmail"   name="SecondaryEmail" [required]="true"  #OfficeEmail="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <span class="errorWrapper" *ngIf="(OfficeEmail?.errors && OfficeEmail?.touched || f.submitted)">
+            <span *ngIf="OfficeEmail?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+         Address
+      </div>
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Address 1</label>
+          <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.CurrentAddress"  placeholder="CurrentAddress"  name="CurrentAddress" [required]="false"  #CurrentAddress="ngModel"> </textarea>
+          <span class="errorWrapper" *ngIf="(CurrentAddress?.errors && CurrentAddress?.touched || f.submitted)">
+            <span *ngIf="CurrentAddress?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-country">Address2 </label>
+          <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.Address2"  placeholder="Address2"  name="Address2" [required]="false"  #Address2="ngModel"> </textarea>
+          <span class="errorWrapper" *ngIf="(Address2?.errors && Address2?.touched || f.submitted)">
+            <span *ngIf="Address2?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Address3</label>
+          <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.Address3"  placeholder="Address3"  name="Address3" [required]="false"  #Address3="ngModel"> </textarea>
+          <span class="errorWrapper" *ngIf="(Address3?.errors && Address3?.touched || f.submitted)">
+            <span *ngIf="Address3?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-country">City </label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.City"  placeholder="City"  name="City" [required]="false"  #City="ngModel">
+          <span class="errorWrapper" *ngIf="(City?.errors && City?.touched || f.submitted)">
+            <span *ngIf="City?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+     
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Country</label>
+          <select class="form-control form-control-alternative" placeholder="select country"  [(ngModel)]="contact.country" name="country"
+      [required]="true"  #country="ngModel">
+        <option *ngFor="let c of countryList" [value]="c.Id" >{{c.Name}}</option>
+      </select>
+      <span class="errorWrapper" *ngIf="(country?.errors && country?.touched || f.submitted)">
+        <span *ngIf="country?.errors?.required" class="text-danger">Required</span>
+      </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-country">State</label>
+          <select class="form-control form-control-alternative" placeholder="select state"  [(ngModel)]="contact.State" name="state"
+      [required]="true"  #state="ngModel">
+        <option *ngFor="let c of stateList" [value]="c.Id" >{{c.Name}}</option>
+      </select>
+      <span class="errorWrapper" *ngIf="(state?.errors && state?.touched || f.submitted)">
+        <span *ngIf="state?.errors?.required" class="text-danger">Required</span>
+      </span>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="row">
+   
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-country">Pin code / Zip code </label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="contact.Pincode"  placeholder="Pincode"  name="Pincode" [required]="false"  #Pincode="ngModel">
+          <span class="errorWrapper" *ngIf="(Pincode?.errors && Pincode?.touched || f.submitted)">
+            <span *ngIf="Pincode?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+     
+    </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      Permanent Address
+    </div>
+    <div class="col-lg-6 text-right">
+      <input type="checkbox"  [(ngModel)]="Pincode.samePermanent"  [required]="true"  #donations="ngModel"
+      name="donations"> Same as Above
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Address 1</label>
+        <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="contact.pCurrentAddress"  placeholder="CurrentAddress"  name="CurrentAddress" [required]="false"  #CurrentAddress="ngModel"> </textarea>
+        <span class="errorWrapper" *ngIf="(CurrentAddress?.errors && CurrentAddress?.touched || f.submitted)">
+          <span *ngIf="CurrentAddress?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-country">Address2 </label>
+        <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="contact.Address2"  placeholder="Address2"  name="Address2" [required]="false"  #Address2="ngModel"> </textarea>
+        <span class="errorWrapper" *ngIf="(Address2?.errors && Address2?.touched || f.submitted)">
+          <span *ngIf="Address2?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+   
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Address3</label>
+        <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="contact.Address3"  placeholder="Address3"  name="Address3" [required]="false"  #Address3="ngModel"> </textarea>
+        <span class="errorWrapper" *ngIf="(Address3?.errors && Address3?.touched || f.submitted)">
+          <span *ngIf="Address3?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-country">City </label>
+        <input type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="contact.City"  placeholder="City"  name="City" [required]="false"  #City="ngModel">
+        <span class="errorWrapper" *ngIf="(City?.errors && City?.touched || f.submitted)">
+          <span *ngIf="City?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+   
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Country</label>
+        <select class="form-control form-control-alternative" placeholder="select country"  [(ngModel)]="contact.country" name="country"
+    [required]="true"  #country="ngModel">
+      <option *ngFor="let c of countryList" [value]="c.Id" >{{c.Name}}</option>
+    </select>
+    <span class="errorWrapper" *ngIf="(country?.errors && country?.touched || f.submitted)">
+      <span *ngIf="country?.errors?.required" class="text-danger">Required</span>
+    </span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-country">State</label>
+        <select class="form-control form-control-alternative" placeholder="select state"  [(ngModel)]="contact.State" name="state"
+    [required]="true"  #state="ngModel">
+      <option *ngFor="let c of stateList" [value]="c.Id" >{{c.Name}}</option>
+    </select>
+    <span class="errorWrapper" *ngIf="(state?.errors && state?.touched || f.submitted)">
+      <span *ngIf="state?.errors?.required" class="text-danger">Required</span>
+    </span>
+      </div>
+    </div>
+   
+  </div>
+
+  <div class="row">
+ 
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-country">Pin code / Zip code </label>
+        <input type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="contact.Pincode"  placeholder="Pincode"  name="Pincode" [required]="false"  #Pincode="ngModel">
+        <span class="errorWrapper" *ngIf="(Pincode?.errors && Pincode?.touched || f.submitted)">
+          <span *ngIf="Pincode?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+   
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      Social Media Link
+    </div>
+    <div class="col-lg-6 text-right">
+     <button class="btn btn-primary" type="btn">Add</button>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-lg-12 ">
+      <table class="table align-items-center table-flush">
+        <thead>
+          <tr>
+            <th>Media name</th>
+            <th>link</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FaceBook</td>
+            <td>link</td>
+            <td>
+              <em class="fas fa-trash text-danger pointer" (click)="remove()"></em>  
+            </td>
+          </tr>
+          <tr>
+            <td>FaceBook</td>
+            <td>link</td>
+            <td>
+              <em class="fas fa-trash text-danger pointer" (click)="remove()"></em>  
+            </td>
+          </tr>
+          <tr>
+            <td>FaceBook</td>
+            <td>link</td>
+            <td>
+              <em class="fas fa-trash text-danger pointer" (click)="remove()"></em>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+      <div class="row mt-2">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
+            <button type="button" class="btn btn-info" (click)="resetForm(); f.reset() ">Reset</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  </form>
+  </div>

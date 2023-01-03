@@ -1,0 +1,74 @@
+<div class="">
+  <app-searchtext (searchVal)="searchVal($event)"></app-searchtext>
+  </div>
+
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Display name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody id="eduTableBody" [ngStyle]="{ 'height': 'calc(100% - ' +tableBodyHeight + 'px)' }">
+      <app-loadingspinner *ngIf="isLoading"> </app-loadingspinner>
+      <ng-container *ngIf="!isLoading">
+        <ng-container
+          *ngIf="allCollegeList.length > 0; then tableData; else noData"></ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #tableData>
+  <ng-container *ngFor="let list of allCollegeList |slice: (pagination.page-1) * pagination.pageSize : (pagination.page-1) * pagination.pageSize + pagination.pageSize">
+    <tr>
+      <th scope="row" (click)="edit(list)" class="pointer">
+        {{ list?.Name || "-" }} 
+      </th>
+      <td>
+        {{ list?.DisplayName || '-' }} 
+      </td>
+      
+      <td>
+        {{ list?.Email || "-" }}
+      </td>
+      <td>
+        {{ list?.Mobile || "-" }} 
+      </td>
+      <td class="text-center">
+        {{ list?.STATUS == 1 ? "Yes" : "No" }}
+      </td>
+      <td class="text-center">
+        <span>
+          <em class="fas fa-edit pointer mr-2" (click)="edit(list)"></em>
+        </span>
+        <span>
+          <em class="fas fa-trash text-danger pointer" (click)="remove(list)"></em>  
+        </span>
+      </td>
+    </tr>
+  </ng-container>
+</ng-template>
+<ng-template #noData>
+  <tr>
+    <td colspan="6" class="text-center">No records found</td>
+  </tr>
+</ng-template>
+
+
+
+  <ng-container *ngIf="allCollegeList.length> 0">
+
+    <div class="mt-2">
+      <ngb-pagination [collectionSize]="pagination.collectionSize" [(page)]="pagination.page" [pageSize]="pagination.pageSize"
+    [maxSize]="5" [rotate]="true">
+    </ngb-pagination>
+    </div>
+  </ng-container>
+ 

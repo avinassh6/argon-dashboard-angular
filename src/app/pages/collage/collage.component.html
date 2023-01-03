@@ -1,0 +1,31 @@
+<div class="header pb-8 pt-5 pt-lg-6 d-flex align-items-center" style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <span class="mask bg-gradient-primary opacity-8"></span>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+<div class="col-xl-11 order-xl-1">
+  <div class="card bg-secondary shadow">
+    <div class="card-header bg-white border-0">
+      <div class="row align-items-center">
+            <div class="col-6">
+              College
+            </div>
+            <div class="col-6 text-right">
+              <button type="button" class="btn btn-primary" (click)="collegeForm()">Add</button>
+            </div>
+          </div>
+    </div>
+    <div class="card-body">
+      <ng-container *ngIf="isTableShow else collegeFormTemplate">
+        <app-collegegrid (selectedcollage)="selectedcollage($event)"></app-collegegrid>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<ng-template #collegeFormTemplate>
+  <app-collegeForm [collageData]="collage" (collageEmit)="collageEmit($event)"></app-collegeForm>
+</ng-template>

@@ -1,0 +1,7 @@
+<div class="form-group relative">
+  <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Search ..." 
+  [(ngModel)]="searchText"  (keyup.enter)="searchMethod()" name="searchText"  #search="ngModel">
+  <span *ngIf="searchText" (click)="searchText= '';searchMethod()" class="closeSearch">X</span>
+</div>
+
+<!--(blur)="searchMethod()"-->

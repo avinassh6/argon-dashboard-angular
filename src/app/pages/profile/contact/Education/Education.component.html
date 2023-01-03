@@ -1,0 +1,182 @@
+<div class="card-header bg-white border-0">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <h3 class="mb-0">Education Information</h3>
+    </div>
+    <div class="col-4 text-right">
+      <ng-container *ngIf="isTableShow">
+        <button type="button" class="btn btn-primary" (click)="educationAdd()">Add</button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <ng-container *ngIf="isTableShow else educationForm">
+
+    <div class="row">
+      <div class="col-lg-12 table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead>
+            <tr>
+              <th>From Year</th>
+              <th>To Year</th>
+              <th>Roll number</th>
+              <th>College</th>
+              <th>Program</th>
+              <th>Subject/Spec</th>
+              <th>Medium</th>
+              <th>Upload Document</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="educationList.length > 0 else norecords">
+              <tr *ngFor="let edu of educationList">
+                <td>{{edu?.FromYear || '-'}}</td>
+                <td>{{edu?.ToYear || '-'}}</td>
+                <td>{{edu?.RollNo || '-'}}</td>
+                <td class="capitalize">{{edu?.College || '-'}}</td>
+                <td>{{edu?.Program || '-'}}</td>
+                <td>{{edu?.SubjectOrSpecialization || '-'}}</td>
+                <td>{{edu?.Medium || '-' }}</td>
+                <td>{{edu?.UploadDocument || '-'}}</td>
+                <!-- <td>
+                  <em class="fas fa-trash text-danger pointer" (click)="remove(edu)"></em>
+                </td> -->
+              </tr>
+            </ng-container>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-template #norecords>
+    <tr>
+      <td colspan="7"> No records foun</td>
+    </tr>
+</ng-template>
+
+<ng-template #educationForm>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Education type</label>
+          <select class="form-control form-control-alternative" placeholder="EducationType"  [(ngModel)]="data.EducationType" name="data"
+            [required]="true"  #EducationType="ngModel">
+            <option value="" disabled selected>Select the Education type</option>
+              <option *ngFor="let ed of educationType" [value]="ed.Id" >{{ed.EducationTypes}}</option>
+            </select>
+          <span class="errorWrapper" *ngIf="(EducationType?.errors && EducationType?.touched || f.submitted)">
+            <span *ngIf="EducationType?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Education Level</label>
+          <select class="form-control form-control-alternative" placeholder=""  [(ngModel)]="data.EducationLevel" name="dataLevel"
+          [required]="true"  #dataLevel="ngModel">
+          <option value="" disabled selected>Select the Education Level</option>
+            <option *ngFor="let ed of educationLevels" [value]="ed.EduLevelId" >{{ed.EduLevelName}}</option>
+          </select>
+          <span class="errorWrapper" *ngIf="(dataLevel?.errors && Details?.touched || f.submitted)"> 
+            <span *ngIf="dataLevel?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+    
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">From Year*</label>
+          <select class="form-control form-control-alternative" placeholder=""  [(ngModel)]="data.FromYear" name="FromYear"
+          [required]="true"  #FromYear="ngModel">
+            <option *ngFor="let year of Yearslist" [value]="year" >{{year}}</option>
+          </select>
+          <span class="errorWrapper" *ngIf="(FromYear?.errors && FromYear?.touched || f.submitted)">
+            <span *ngIf="FromYear?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">To Year*</label>
+          <select class="form-control form-control-alternative" placeholder=""  [(ngModel)]="data.ToYear" name="ToYear"
+          [required]="true"  #ToYear="ngModel">
+            <option *ngFor="let year of Yearslist" [value]="year" >{{year}}</option>
+          </select>
+          <span class="errorWrapper" *ngIf="(ToYear?.errors && ToYear?.touched || f.submitted)">
+            <span *ngIf="ToYear?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+    
+      <div class="col-lg-4">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">RollNo*</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="data.RollNo"  placeholder=""  name="RollNo" [required]="true"  #RollNo="ngModel">
+          <span class="errorWrapper" *ngIf="(RollNo?.errors && RollNo?.touched || f.submitted)">
+            <span *ngIf="RollNo?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">College*</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="data.College"  placeholder=""  name="Links" [required]="true"  #Links="ngModel">
+          <span class="errorWrapper" *ngIf="(Links?.errors && Links?.touched || f.submitted)">
+            <span *ngIf="Links?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Program*</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="data.Program"  placeholder=""  name="Program" [required]="true"  #Program="ngModel">
+          <span class="errorWrapper" *ngIf="(Program?.errors && Program?.touched || f.submitted)">
+            <span *ngIf="Program?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Subject Or Specialization*</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="data.SubjectOrSpecialization"  placeholder=""  name="SubjectOrSpecialization" [required]="true"  #SubjectOrSpecialization="ngModel">
+          <span class="errorWrapper" *ngIf="(SubjectOrSpecialization?.errors && SubjectOrSpecialization?.touched || f.submitted)">
+            <span *ngIf="SubjectOrSpecialization?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Medium</label>
+          <input type="text" id="input-username" class="form-control form-control-alternative" 
+          [(ngModel)]="data.Medium"  placeholder=""  name="Medium" [required]="true"  #Medium="ngModel">
+          <span class="errorWrapper" *ngIf="(Medium?.errors && Medium?.touched || f.submitted)">
+            <span *ngIf="Medium?.errors?.required" class="text-danger">Required</span>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="form-group">
+          <label class="form-control-label" for="input-username">Upload Document</label>
+         <div  class="">
+          <app-uploadimages [multiple]="'multiple'"></app-uploadimages>
+         </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
+          <button type="button" class="btn btn-info" (click)="resetForm(); f.reset() ">Reset</button>
+          <button type="button" class="btn btn-secondary" (click)="eduform() ">Back to Table</button>
+        </div>
+      </div>
+    </div>
+    </form>
+</ng-template>

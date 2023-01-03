@@ -1,1 +1,116 @@
 /* You can add global styles to this file, and also import other style files */
+.modal-backdrop{
+    position: static !important;
+}
+.pointer{
+    cursor: pointer;
+}
+.btn-outline-secondary{
+    border-color: #CAD2D7 !important;
+}
+
+.btn-outline-secondary:hover{
+    border-color: #CAD2D7 !important;
+}
+
+.profileList{
+    margin: 10px 0 0 0;
+    padding: 0;
+    width: 100%;
+    li{
+        display: block;
+        list-style-type: none;
+        a{
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+            font-family: Open Sans, sans-serif;
+            color:rgba(0, 0, 0, 0.5);
+            padding: 10px !important;
+            i{
+                padding-right: 10px;
+            }
+        }
+    }
+}
+
+.is-active{
+    background-color: #e9ecef; //8468df
+    border-radius: 4px;
+}
+
+.profile-rounded-circle img{
+    transition: all 0.15s ease;
+    border-radius: 50%;
+    max-width: 120px;
+}
+
+.card-header-all{
+    border-radius:calc(0.375rem - 1px);
+    padding:1.25rem 1.5rem;
+    margin-bottom: 0;
+}
+
+// .table-flush tbody{
+//        height: 350px;
+//        overflow: auto;
+//        display: block;
+//         &::-webkit-scrollbar-thumb {
+//             display: none;
+//         }
+//        &:hover{
+//         &::-webkit-scrollbar-thumb {
+//             display: block;
+//         }
+//        }
+// }
+.table-responsive {
+    max-height:500px;
+    &::-webkit-scrollbar-thumb {
+        display: none;
+    }
+   &:hover{
+    &::-webkit-scrollbar-thumb {
+        display: block;
+    }
+   }
+}
+
+// thead, tbody tr {
+//     display: table;
+//     width: 100%;
+//     table-layout: fixed;/* even columns width , fix width of table too*/
+// }
+
+
+.page-link{
+ .visually-hidden{
+     display: none !important;
+ }
+}
+
+.closeSearch{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.relative{
+    position: relative;
+}
+.table{
+    border: 1px solid #ddd;
+    thead{
+        tr{
+            th{
+                font-size: 11px !important;
+                background: #e9ecef !important;
+            }
+        }
+    }
+}
+
+.capitalize{
+    text-transform: capitalize;
+}

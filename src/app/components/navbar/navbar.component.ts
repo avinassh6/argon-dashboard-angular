@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthserviceService } from 'src/app/service/authservice.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,15 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  loggedUser: any;
+  constructor(location: Location,  private element: ElementRef, private router: Router,
+    private authserviceService: AuthserviceService) {
     this.location = location;
+    this.loggedUser = this.authserviceService.authentication;
   }
 
   ngOnInit() {
+    console.log(this.loggedUser);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
   getTitle(){
@@ -30,7 +35,12 @@ export class NavbarComponent implements OnInit {
             return this.listTitles[item].title;
         }
     }
-    return 'Dashboard';
+    return '';
+  }
+
+  logout(){
+    this.authserviceService.removeLocalStorge('authData');
+    this.router.navigate(['auth/login']);
   }
 
 }

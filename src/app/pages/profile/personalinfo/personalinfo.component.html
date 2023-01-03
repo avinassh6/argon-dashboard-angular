@@ -1,0 +1,226 @@
+<div class="card-header bg-white border-0">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <h3 class="mb-0">Personal Information</h3>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  
+  
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="pl-lg-4">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">First name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.Firstname"  placeholder="Firstname"  name="Firstname" [required]="true"  #Firstname="ngModel">
+            <span class="errorWrapper" *ngIf="(Firstname?.errors && Firstname?.touched || f.submitted)">
+              <span *ngIf="Firstname?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Middle name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.mName"  placeholder="mName"  name="mName" [required]="true"  #mName="ngModel">
+            <span class="errorWrapper" *ngIf="(mName?.errors && mName?.touched || f.submitted)">
+              <span *ngIf="mName?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Last name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.LName"  placeholder="Last name"  name="LName" [required]="true"  #LName="ngModel">
+            <span class="errorWrapper" *ngIf="(LName?.errors && LName?.touched || f.submitted)">
+              <span *ngIf="LName?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Father name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.Fathername"  placeholder="Fathername"  name="Fathername" [required]="true"  #Fathername="ngModel">
+            <span class="errorWrapper" *ngIf="(Fathername?.errors && Fathername?.touched || f.submitted)">
+              <span *ngIf="Fathername?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Mother name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.MotherName"  placeholder="MotherName"  name="MotherName" [required]="true"  #MotherName="ngModel">
+            <span class="errorWrapper" *ngIf="(MotherName?.errors && MotherName?.touched || f.submitted)">
+              <span *ngIf="MotherName?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Father name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.Fathername"  placeholder="Fathername"  name="Fathername" [required]="true"  #Fathername="ngModel">
+            <span class="errorWrapper" *ngIf="(Fathername?.errors && Fathername?.touched || f.submitted)">
+              <span *ngIf="Fathername?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Mother name</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.MotherName"  placeholder="MotherName"  name="MotherName" [required]="true"  #MotherName="ngModel">
+            <span class="errorWrapper" *ngIf="(MotherName?.errors && MotherName?.touched || f.submitted)">
+              <span *ngIf="MotherName?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Date of Birth</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.dob"  placeholder="Date of Birth"  name="DateofBirth" [required]="true"  #DateofBirth="ngModel">
+            <span class="errorWrapper" *ngIf="(DateofBirth?.errors && DateofBirth?.touched || f.submitted)">
+              <span *ngIf="DateofBirth?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-country">Gender</label>
+            <select class="form-control form-control-alternative" placeholder="Gender"  [(ngModel)]="profile.Gender" name="Gender"
+            [required]="true"  #Gender="ngModel">
+              <option *ngFor="let gender of genderlist" [value]="gender.Id" >{{gender.Name}}</option>
+            </select>
+            <span class="errorWrapper" *ngIf="(Gender?.errors && Gender?.touched || f.submitted)">
+              <span *ngIf="role?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Marital Status</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.Maritalstatus"  placeholder="Marital status"  name="DateofBirth" [required]="true"  #Maritalstatus="ngModel">
+            <span class="errorWrapper" *ngIf="(Maritalstatus?.errors && Maritalstatus?.touched || f.submitted)">
+              <span *ngIf="Maritalstatus?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-country">Gender</label>
+            <select class="form-control form-control-alternative" placeholder="Gender"  [(ngModel)]="profile.Gender" name="Gender"
+            [required]="true"  #Gender="ngModel">
+              <option *ngFor="let gender of genderlist" [value]="gender.Id" >{{gender.Name}}</option>
+            </select>
+            <span class="errorWrapper" *ngIf="(Gender?.errors && Gender?.touched || f.submitted)">
+              <span *ngIf="role?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Aadhar Number</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.AadharNumber"  placeholder="5555 5555 5555"  name="AadharNumber" [required]="true"  #AadharNumber="ngModel">
+            <span class="errorWrapper" *ngIf="(AadharNumber?.errors && AadharNumber?.touched || f.submitted)">
+              <span *ngIf="AadharNumber?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-country">PAN Number</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.PanNumber"  placeholder="5555 5555 5555"  name="PanNumber" [required]="true"  #PanNumber="ngModel">
+            <span class="errorWrapper" *ngIf="(PanNumber?.errors && PanNumber?.touched || f.submitted)">
+              <span *ngIf="PanNumber?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+     
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Country</label>
+            <select class="form-control form-control-alternative" placeholder="country"  [(ngModel)]="profile.country" name="country"
+        [required]="true"  #country="ngModel">
+          <option *ngFor="let c of countryList" [value]="c.Id" >{{c.Name}}</option>
+        </select>
+        <span class="errorWrapper" *ngIf="(country?.errors && country?.touched || f.submitted)">
+          <span *ngIf="country?.errors?.required" class="text-danger">Required</span>
+        </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-country">Nationality</label>
+            <input type="text" id="input-username" class="form-control form-control-alternative" 
+            [(ngModel)]="profile.Nationality"  placeholder="Nationality"  name="Nationality" [required]="true"  #Nationality="ngModel">
+            <span class="errorWrapper" *ngIf="(Nationality?.errors && Nationality?.touched || f.submitted)">
+              <span *ngIf="Nationality?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="input-username">Blood Group</label>
+            <select class="form-control form-control-alternative" placeholder="Blood Group"  [(ngModel)]="profile.BloodGroup" name="BloodGroup"
+            [required]="true"  #BloodGroup="ngModel">
+              <option *ngFor="let group of BloodGroupList" [value]="group.Id" >{{group.Name}}</option>
+            </select>
+            <span class="errorWrapper" *ngIf="(BloodGroup?.errors && BloodGroup?.touched || f.submitted)">
+              <span *ngIf="group?.errors?.required" class="text-danger">Required</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <input type="checkbox"  [(ngModel)]="profile.donations"  [required]="true"  #donations="ngModel"
+            name="donations"> I don’t want to be contact for any blood donations
+            <span class="errorWrapper" *ngIf="(donations?.errors && donations?.touched || f.submitted)">
+             <span *ngIf="donations?.errors?.required" class="text-danger">Required</span>
+           </span>
+        </div>
+        </div>
+      
+       
+      </div>
+  
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
+              <button type="button" class="btn btn-info" (click)="resetForm(); f.reset() ">Reset</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    </form>
+</div>

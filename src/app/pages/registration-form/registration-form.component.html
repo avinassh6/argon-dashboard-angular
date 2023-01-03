@@ -1,0 +1,157 @@
+<div class="header pb-8 pt-5 pt-lg-6 d-flex align-items-center" style="min-height: 100px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-primary opacity-8"></span>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+                <div class="col-6">
+                  Registration
+                </div>
+                <div class="col-6 text-right">
+                  <button type="button" class="btn btn-primary" (click)="regform()">Add</button>
+                </div>
+              </div>
+        </div>
+        <div class="card-body registration">
+          <ng-container *ngIf="isTableShow else registrationForm">
+            <app-regisration-table  (selectedUser)="selectedUser($event)"> </app-regisration-table>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #registrationForm>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <h6 class="heading-small text-muted mb-4">Registration information</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-username">Username</label>
+                <input type="text" id="input-username" class="form-control form-control-alternative" 
+                [(ngModel)]="registratiom.Name"  placeholder="Username"  name="Username" [required]="true"  #Username="ngModel">
+                <span class="errorWrapper" *ngIf="(Username?.errors && Username?.touched || f.submitted)">
+                  <span *ngIf="Username?.errors?.required" class="text-danger">Required</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-country">Role</label>
+                <select class="form-control form-control-alternative" placeholder="Role"  [(ngModel)]="registratiom.IdRole" name="role"
+                [required]="true"  #role="ngModel">
+                  <option *ngFor="let option of rolesList" [value]="option.Id" >{{option.Name}}</option>
+                </select>
+                <span class="errorWrapper" *ngIf="(role?.errors && role?.touched || f.submitted)">
+                  <span *ngIf="role?.errors?.required" class="text-danger">Required</span>
+                </span>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-first-name">First name</label>
+                <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" 
+                [(ngModel)]="registratiom.FName"  name="firstName" [required]="true"  #firstName="ngModel">
+                <span class="errorWrapper" *ngIf="(firstName?.errors && firstName?.touched || f.submitted)">
+                  <span *ngIf="firstName?.errors?.required" class="text-danger">Required</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-last-name">Last name</label>
+                <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" 
+                [(ngModel)]="registratiom.LName"  name="lastName" [required]="true"  #lastName="ngModel"
+                >
+                <span class="errorWrapper" *ngIf="(lastName?.errors && lastName?.touched || f.submitted)">
+                  <span *ngIf="lastName?.errors?.required" class="text-danger">Required</span>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-last-name">Middle name</label>
+                <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Middle Name" 
+                [(ngModel)]="registratiom.MName"  name="MiddleName"   #MiddleName="ngModel"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-email">Email address
+                </label>
+                <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"
+                [(ngModel)]="registratiom.Email"   name="Email" [required]="true"  #Email="ngModel"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                <span *ngIf="Email.touched">
+                  <!-- <span class="errorWrapper" *ngIf="email?.errors?.touched"> -->
+                    <span *ngIf="Email?.errors?.required" class="text-danger">Required</span>
+                  <!-- </span> -->
+                  <span class="errorWrapper" *ngIf="Email?.errors?.pattern ">
+                    Email is invalid
+                  </span>
+                </span>
+              </div>
+            </div>
+           
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-city">Mobile
+                </label>
+                <input type="number" id="input-mobile" class="form-control form-control-alternative" placeholder="Mobile" 
+                [(ngModel)]="registratiom.Mobile" [required]="true"  #Mobile="ngModel">
+                <span class="errorWrapper" *ngIf="(Mobile?.errors && Mobile?.touched || f.submitted)">
+                  <span *ngIf="Mobile?.errors?.required" class="text-danger">Required</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        <div class="pl-lg-4">
+          <div class="form-group">
+           <input type="checkbox"  [(ngModel)]="registratiom.DisplayEmail"   name="hideEmail"  #hideEmail="ngModel" title="If you check this your details are visible to colleges and AlumniBase team"
+           name="terms"> Hide Email
+          
+          </div>
+        </div>
+        <div class="pl-lg-4">
+          <div class="form-group">
+            <input type="checkbox"  [(ngModel)]="registratiom.DisplayMobile" name="hideMobile"   #hideMobile="ngModel" title="If you check this your details are visible to colleges and AlumniBase team"
+           name="terms"> Hide Mobile
+          
+          </div>
+        </div>
+        <ng-container *ngIf="!registratiom.UserId">
+          <div class="pl-lg-4">
+            <div class="form-group">
+             <input type="checkbox"  [(ngModel)]="registratiom.terms"  [required]="true"  #terms="ngModel"
+             name="terms"> Terms and Conditions
+             <span class="errorWrapper" *ngIf="(terms?.errors && terms?.touched || f.submitted)">
+              <span *ngIf="terms?.errors?.required" class="text-danger">Required</span>
+            </span>
+            </div>
+          </div>
+        </ng-container>
+        <div class="pl-lg-4">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
+            <button type="button" class="btn btn-info" (click)="resetForm(); f.reset() ">Reset</button>
+            <button type="button" class="btn btn-secondary" (click)="regform() ">Back to Table</button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>

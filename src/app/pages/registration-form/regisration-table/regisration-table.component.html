@@ -1,0 +1,115 @@
+<div class="">
+<app-searchtext (searchVal)="searchVal($event)"></app-searchtext>
+</div>
+
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile No.</th>
+        <th scope="col">Show Email</th>
+        <th scope="col">Show Mobile</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody  id="eduTableBody" [ngStyle]="{ 'height': 'calc(100% - ' +tableBodyHeight + 'px)' }">
+      <app-loadingspinner *ngIf="isLoading"> </app-loadingspinner>
+      <ng-container *ngIf="!isLoading">
+        <ng-container
+          *ngIf="allUsersList.length > 0; then tableData; else noData"></ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<ng-template>
+
+  <div class="card-footer py-4">
+    <nav aria-label="...">
+      <ul class="pagination justify-content-end mb-0">
+        <li class="page-item disabled">
+          <a class="page-link" href="javascript:void(0)" tabindex="-1">
+            <i class="fas fa-angle-left"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="javascript:void(0)">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)"
+            >2 <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="javascript:void(0)">
+            <i class="fas fa-angle-right"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</ng-template>
+
+<ng-template #tableData>
+  <ng-container *ngFor="let list of allUsersList |slice: (pagination.page-1) * pagination.pageSize : (pagination.page-1) * pagination.pageSize + pagination.pageSize">
+    <tr>
+      <th scope="row" (click)="edit(list)" class="pointer">
+        {{ list?.Name || "-" }}
+      </th>
+      <td>
+        {{ list?.FName }} {{ list?.LName }} {{ list?.MName }}
+      </td>
+      <td>
+        {{ userRoles[list?.IdRole] || "-" }}
+      </td>
+      <td>
+        {{ list?.Email || "-" }}
+      </td>
+      <td>
+        {{ list?.Mobile || "-" }}
+      </td>
+      <td class="text-center">
+        {{ list?.DisplayEmail == 1 ? "Yes" : "No" }}
+      </td>
+      <td class="text-center">
+        {{ list?.DisplayMobile == 1 ? "Yes" : "No" }}
+      </td>
+      <td class="text-center">
+        <span>
+          <em class="fas fa-edit pointer mr-2" (click)="edit(list)"></em>
+        </span>
+        <span>
+          <em class="fas fa-trash text-danger pointer" (click)="remove(list)"></em>  
+        </span>
+      </td>
+    </tr>
+  </ng-container>
+
+
+
+</ng-template>
+<ng-template #noData>
+  <tr>
+    <td colspan="7" class="text-center">No records found</td>
+  </tr>
+</ng-template>
+<ng-container *ngIf="allUsersList.length> 0">
+
+  <div class="mt-2">
+    <ngb-pagination [collectionSize]="pagination.collectionSize" [(page)]="pagination.page" [pageSize]="pagination.pageSize"
+  [maxSize]="5" [rotate]="true">
+  </ngb-pagination>
+  </div>
+</ng-container>
+
+
+
+

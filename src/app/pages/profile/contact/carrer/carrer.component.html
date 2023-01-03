@@ -1,0 +1,85 @@
+<div class="card-header bg-white border-0">
+  <div class="row align-items-center">
+    <div class="col-8">
+      <h3 class="mb-0">Carrer Information</h3>
+    </div>
+    <div class="col-4 text-right">
+      <ng-container *ngIf="isTable">
+        <button type="button" class="btn btn-primary" (click)="addCarrer()">Add</button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <ng-container *ngIf="isTable else addcarrerForm">
+    <div class="row">
+      <div class="col-lg-12">
+        <table class="table align-items-center table-flush">
+          <thead>
+            <tr>
+              <th>Heading</th>
+              <th>Details</th>
+              <th>Link</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FaceBook</td>
+              <td>link</td>
+              <td>FaceBook</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #addcarrerForm>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div class="row">
+    
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Heading</label>
+        <input type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="carrer.Heading"  placeholder="Heading"  name="Heading" [required]="true"  #Heading="ngModel">
+        <span class="errorWrapper" *ngIf="(Heading?.errors && Heading?.touched || f.submitted)">
+          <span *ngIf="Heading?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Details</label>
+        <textarea type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="carrer.Details"  placeholder="Details"  name="Details" [required]="true"  #Details="ngModel"> </textarea>
+        <span class="errorWrapper" *ngIf="(Details?.errors && Details?.touched || f.submitted)"> 
+          <span *ngIf="Details?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="form-group">
+        <label class="form-control-label" for="input-username">Link*</label>
+        <input type="text" id="input-username" class="form-control form-control-alternative" 
+        [(ngModel)]="carrer.Links"  placeholder="https://www.google.co.in"  name="Links" [required]="true"  #Links="ngModel">
+        <span class="errorWrapper" *ngIf="(Links?.errors && Links?.touched || f.submitted)">
+          <span *ngIf="Links?.errors?.required" class="text-danger">Required</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" title="Submit">Submit</button>
+        <button type="button" class="btn btn-info" (click)="resetForm(); f.reset() ">Reset</button>
+        <button type="button" class="btn btn-secondary" (click)="carrerform() ">Back to Table</button>
+      </div>
+    </div>
+  </div>
+</form>
+</ng-template>
+
+{{carrer | json}}
